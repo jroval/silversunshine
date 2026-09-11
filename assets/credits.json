@@ -1,0 +1,46 @@
+{
+  "hero": {
+    "src": "assets/img/hero.webp",
+    "title": "View to the solar panel field - panoramio",
+    "creator": "BirdsEyeLV",
+    "creator_url": "https://web.archive.org/web/20161025091522/http://www.panoramio.com/user/4633986?with_photo_id=77488052",
+    "license": "by-sa",
+    "license_version": "3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "foreign_landing_url": "https://commons.wikimedia.org/w/index.php?curid=55119403",
+    "source": "wikimedia"
+  },
+  "market": {
+    "src": "assets/img/market.webp",
+    "title": "Solar panels on a roof - Northfield",
+    "creator": "ell brown",
+    "creator_url": "https://www.flickr.com/photos/39415781@N06",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/39415781@N06/6949115457",
+    "source": "flickr"
+  },
+  "cta": {
+    "src": "assets/img/cta.webp",
+    "title": "Solar Panels",
+    "creator": "Matt Bango",
+    "creator_url": "https://mattbango.photo",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/solar-panels-EFYB8VJXNT",
+    "source": "stocksnap"
+  },
+  "product-silicon": {
+    "src": "assets/img/product-silicon.webp",
+    "title": "Polycristalline-silicon-wafer 20060626 568",
+    "creator": "Georg Slickers",
+    "creator_url": "https://commons.wikimedia.org/wiki/User:Georg_Slickers",
+    "license": "by-sa",
+    "license_version": "3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "foreign_landing_url": "https://commons.wikimedia.org/w/index.php?curid=1013992",
+    "source": "wikimedia"
+  }
+}
