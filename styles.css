@@ -146,7 +146,7 @@ ul { list-style: none; padding: 0; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
   padding: .95rem 1.7rem;
-  border-radius: 999px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: .96rem;
   transition: transform .35s var(--ease-out), box-shadow .35s var(--ease-out), background .3s var(--ease-out);
