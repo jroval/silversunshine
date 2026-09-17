@@ -105,6 +105,92 @@
     });
   }
 
+  /* ---------- Custom select (branded dropdown) ---------- */
+  function initCustomSelect() {
+    var widgets = $$("[data-custom-select]");
+    if (!widgets.length) return;
+
+    widgets.forEach(function (widget) {
+      var trigger = $(".custom-select-trigger", widget);
+      var list = $("[data-select-list]", widget);
+      var valueLabel = $("[data-select-value]", trigger);
+      var hiddenSelect = $("select", widget);
+      var options = $$("li[role=\"option\"]", list);
+      var activeIndex = options.findIndex(function (o) { return o.classList.contains("is-selected"); });
+
+      function close() {
+        widget.classList.remove("is-open");
+        list.hidden = true;
+        trigger.setAttribute("aria-expanded", "false");
+      }
+      function open() {
+        widget.classList.add("is-open");
+        list.hidden = false;
+        trigger.setAttribute("aria-expanded", "true");
+        var current = options[activeIndex] || options[0];
+        if (current) current.focus();
+      }
+      function selectOption(option) {
+        options.forEach(function (o) {
+          o.classList.remove("is-selected");
+          o.setAttribute("aria-selected", "false");
+        });
+        option.classList.add("is-selected");
+        option.setAttribute("aria-selected", "true");
+        activeIndex = options.indexOf(option);
+        valueLabel.textContent = option.dataset.value;
+        if (hiddenSelect) {
+          hiddenSelect.value = option.dataset.value;
+          hiddenSelect.dispatchEvent(new Event("change", { bubbles: true }));
+        }
+      }
+
+      options.forEach(function (option, i) {
+        option.setAttribute("tabindex", "-1");
+        option.addEventListener("click", function () {
+          selectOption(option);
+          close();
+          trigger.focus();
+        });
+        option.addEventListener("mouseenter", function () { option.classList.add("is-active"); });
+        option.addEventListener("mouseleave", function () { option.classList.remove("is-active"); });
+        option.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            selectOption(option);
+            close();
+            trigger.focus();
+          } else if (e.key === "Escape") {
+            close();
+            trigger.focus();
+          } else if (e.key === "ArrowDown") {
+            e.preventDefault();
+            var next = options[Math.min(i + 1, options.length - 1)];
+            next.focus();
+          } else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            var prev = options[Math.max(i - 1, 0)];
+            prev.focus();
+          }
+        });
+      });
+
+      trigger.addEventListener("click", function () {
+        if (widget.classList.contains("is-open")) close(); else open();
+      });
+      trigger.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          open();
+        }
+      });
+
+      document.addEventListener("click", function (e) {
+        if (!widget.contains(e.target)) close();
+      });
+    });
+  }
+
   /* ---------- Card tilt (subtle, fine pointers only) ---------- */
   function initTilt() {
     if (!fineHover) return;
@@ -154,6 +240,7 @@
     safe(initSmoothAnchors, "initSmoothAnchors");
     safe(initReveals, "initReveals");
     safe(initFaq, "initFaq");
+    safe(initCustomSelect, "initCustomSelect");
     safe(initTilt, "initTilt");
     safe(initContactForm, "initContactForm");
     safe(initWhatsapp, "initWhatsapp");
