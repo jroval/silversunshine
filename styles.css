@@ -356,7 +356,9 @@ ul { list-style: none; padding: 0; }
 }
 @media (min-width: 720px) { .audience-grid { grid-template-columns: repeat(2, 1fr); } }
 .audience-card {
-  padding: 1.7rem;
+  padding: 1.5rem 1.7rem;
+  display: flex; align-items: center;
+  min-height: 84px;
   transition: transform .4s var(--ease-out), box-shadow .4s var(--ease-out);
 }
 .audience-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
@@ -365,7 +367,7 @@ ul { list-style: none; padding: 0; }
   color: var(--green-600); margin-bottom: .9rem;
 }
 .audience-card h3 {
-  font-size: 1.08rem; margin-bottom: .55rem;
+  font-size: 1.15rem;
 }
 .audience-card p { font-size: .92rem; color: var(--ink-mute); }
 
