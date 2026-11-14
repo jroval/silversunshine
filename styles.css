@@ -407,8 +407,7 @@ ul { list-style: none; padding: 0; }
 .process-step .step-n {
   font-family: var(--display); font-weight: 700;
   font-size: 1.6rem;
-  background: linear-gradient(135deg, var(--navy-900), var(--green-500));
-  -webkit-background-clip: text; background-clip: text; color: transparent;
+  color: var(--green-700);
 }
 .process-step h3 { font-size: 1.02rem; }
 .process-step p { font-size: .88rem; color: var(--ink-mute); }
