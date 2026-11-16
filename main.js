@@ -219,8 +219,36 @@
     var form = $("[data-contact-form]");
     if (!form) return;
     var success = $("[data-form-success]");
-    form.addEventListener("submit", function () {
-      if (success) success.classList.add("is-visible");
+    var error = $("[data-form-error]");
+    var button = $(".form-submit", form);
+    var label = button.textContent;
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var data = Object.fromEntries(new FormData(form));
+      data.replyto = data.Email;
+      success.classList.remove("is-visible");
+      error.hidden = true;
+      button.disabled = true;
+      button.textContent = "Enviando…";
+      fetch(form.action, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(data)
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+          if (!res.success) throw new Error(res.message);
+          success.classList.add("is-visible");
+          ["Nombre", "Empresa", "Email", "Mensaje", "Privacidad"].forEach(function (n) {
+            var f = form.elements[n];
+            if (f.type === "checkbox") f.checked = false; else f.value = "";
+          });
+        })
+        .catch(function () { error.hidden = false; })
+        .then(function () {
+          button.disabled = false;
+          button.textContent = label;
+        });
     });
   }
 
